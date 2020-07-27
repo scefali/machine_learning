@@ -23,6 +23,23 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+best_error = 100000000000000;
+try_arr = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
+
+for C_try = try_arr
+  for sigma_try = try_arr
+    model= svmTrain(X, y, C_try, @(x1, x2) gaussianKernel(x1, x2, sigma_try)); 
+    predictions = svmPredict(model, Xval);
+    error = mean(double(predictions ~= yval));
+    if error < best_error
+      C = C_try;
+      sigma = sigma_try;
+      best_error = error;
+    end
+  end
+end
+
+
 
 
 

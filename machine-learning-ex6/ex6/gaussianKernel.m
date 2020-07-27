@@ -16,7 +16,8 @@ sim = 0;
 %
 %
 
-
+pre_exp = (-2 * sigma^2)^-1 * sum((x1 - x2).^2);
+sim = exp(pre_exp); 
 
 
 
