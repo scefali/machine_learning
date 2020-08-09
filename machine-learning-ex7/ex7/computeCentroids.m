@@ -27,9 +27,17 @@ centroids = zeros(K, n);
 %
 
 
-
-
-
+idx_matrix = zeros(n, K);
+for i=1:m
+  my_choice = idx(i);
+  idx_matrix(i, my_choice) = 1;
+end
+for j=1:K
+  my_choices = idx_matrix(:, j);
+  total = my_choices' * X;
+  avg = total / sum(my_choices);
+  centroids(j, :) = avg';
+end
 
 
 
